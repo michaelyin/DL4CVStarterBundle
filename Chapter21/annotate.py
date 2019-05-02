@@ -33,7 +33,7 @@ for (i, image_path) in enumerate(image_paths):
 
         # Find contours in the image, keeping only the four largest ones
         contours = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        contours = contours[0] if imutils.is_cv2() else contours[1]
+        contours = contours[1] if imutils.is_cv3() else contours[0]
         contours = sorted(contours, key=cv2.contourArea, reverse=True)[:4]
 
         # Loop over the contours
@@ -73,5 +73,6 @@ for (i, image_path) in enumerate(image_paths):
         print("[INFO]: Manually leaving script")
         break
     # An unknown error has occurred for this particular image
-    except:
+    except Exception as e:
+        print (e)
         print("[INFO]: Skipping image...")

@@ -38,7 +38,7 @@ for image_path in image_paths:
     # Find contours in the image, keeping only the four largest ones, then sort them from left-to-right
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                             cv2.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if imutils.is_cv2() else cnts[1]
+    cnts = cnts[1] if imutils.is_cv3() else cnts[0]
     cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:4]
     cnts = contours.sort_contours(cnts)[0]
 
